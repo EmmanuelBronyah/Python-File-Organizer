@@ -32,7 +32,7 @@ def get_path():
         return -1
     try:
         if os.path.isfile(path):
-            raise NotADirectoryError(f'The path {path} points to a file, not a folder.')
+            raise NotADirectoryError(f'The path "{path}" points to a file, not a folder.')
         elif os.path.isdir(path):
             return path
         else:
@@ -88,6 +88,7 @@ def organize_files(path):
                         old_path = os.path.join(path, obj)
                         new_path = os.path.join(os.path.join(path, item), obj)
                         shutil.move(old_path, new_path)
+    print('Files organized.')
 
 
 if __name__ == '__main__':
