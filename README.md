@@ -29,7 +29,7 @@ cd file-organizer
 ```
 3. **Run the program.**
 ```shell
-python main.py
+python file_organizer.py
 ```
 
 ## Usage
