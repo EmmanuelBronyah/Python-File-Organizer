@@ -1,34 +1,44 @@
 import os
 import shutil
+import argparse
 import mimetypes
 
 
 def main():
-    """
-    Executes the entire program.
-
-    """
-    continue_program = True
-    while continue_program:
-        path = get_path()
-        if path is not None and path != -1:
-            file_formats = get_file_formats(path)
-            create_directories(path, file_formats)
-            organize_files(path)
-        else:
-            if path == -1:
-                continue_program = False
-                print('Program ended.')
+    args = arg_parser()
+    path = path_validation(args)
+    if path is not None and path != -1:
+        file_formats = get_file_formats(args)
+        create_directories(args, file_formats)
+        organize_files(args)
+    else:
+        if path == -1:
+            print('Program ended.')
 
 
-def get_path():
+def arg_parser():
+    parser = argparse.ArgumentParser(
+        prog='File organizer',
+        description='Takes a valid path and groups files based on their file format.',
+        epilog='The program scans a directory for files and creates folders for all \
+                the file formats where each folder bares the name \
+                of a format and files in the directory are moved into \
+                these folders according to their file format.'
+    )
+    parser.add_argument('path', metavar='P', type=str, nargs='?', help='Path to the folder.')
+    args = parser.parse_args()
+    args = args.path
+    return args
+
+
+def path_validation(path):
     """
     Takes as input the path to the folder to be organized.
 
     If no path is provided, -1 is returned and the program ends.
     Returns None if an error occurs and prints to the screen the error message.
     """
-    path = input(r'Enter the path to the folder you want to organize: ') or 'exit'
+    path = path or 'exit'
     if path == 'exit':
         return -1
     try:
@@ -49,7 +59,7 @@ def get_file_formats(path):
     Generates the extension of files in the current path.
 
     :param path: This is a string representing the current file path.
-    :return: Returns a list of unique extensions from which folders will be created.
+    :return: Returns a list of file formats from which folders will be created.
     """
     file_formats = []
     for file in os.listdir(path):

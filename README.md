@@ -1,21 +1,21 @@
 # Python File Organizer.
 This command-line python file organizer is a program that
 scans a directory for files and creates folders for all
-the file extensions where each folder bares the name 
-of an extension and files in the directory are moved into
-these folders according to their extension.
+the file format where each folder bares the name 
+of the file format and files in the directory are moved into
+these folders according to their format.
 
 ## Features of the file organizer
 1. **Takes path**: The program receives as input the path to
 the directory whose contents are to be organized. It returns
 the path if it is valid or returns None if an error occurs. 
-2. **Extracts extension and creates folders**: The program 
-extracts the extension of the files in the directory and 
-creates a folder for each extension where files of the 
+2. **Extracts the file format and creates folders**: The program 
+extracts the format of the files in the directory and 
+creates a folder for each file format where files of the 
 same type are stored.
-3. **Organize files**: The extension of each file in the 
+3. **Organize files**: The format of each file in the 
 directory is checked against the folder names in the directory,
-and if the extension matches the name of the folder, the
+and if the format matches the name of the folder, the
 file is moved into the folder.
 
 ## Getting started
